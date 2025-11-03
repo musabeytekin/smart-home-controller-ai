@@ -7,3 +7,9 @@ class Room:
         self.temperature = temperature
         self.light_status = light_status
         self.doors = doors
+
+    def turn_on_lights(self):
+        self.light_status = True
+
+    def turn_off_lights(self):
+        self.light_status = False

@@ -1,6 +1,7 @@
 class Door:
-    def __init__(self, id: str, is_locked: bool, lights_on: bool = False):
+    def __init__(self, id: str, name: str, is_locked: bool, lights_on: bool = False):
         self.id = id
+        self.name = name
         self.is_locked = is_locked
         self.lights_on = lights_on
     
