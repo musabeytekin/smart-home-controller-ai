@@ -54,7 +54,7 @@ echo "Remote origin: $(git remote get-url origin)"
 
 # install requirements.txt
 echo "Installing Python dependencies from requirements.txt..."
-pip install --no-cache-dir -r /workspaces/supervisor-pattern/requirements.txt || handle_error "Failed to install Python dependencies"
+pip install --no-cache-dir -r requirements.txt || handle_error "Failed to install Python dependencies"
 
 echo
 
