@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from core.exception.lightning_error import LightingError
 
 class LightningService(ABC):
 
