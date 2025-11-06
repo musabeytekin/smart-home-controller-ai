@@ -19,13 +19,15 @@ def turn_off_all_lights() -> str:
 def turn_on_room_light(room_id: str) -> str:
     """Turn on the light in a specific room."""
     container.lightning_service.turn_on_room_light(room_id)
-    return f"Light in room {room_id} has been turned on."
+    room_name = container.house.get_room_by_id(room_id).name
+    return f"Light in room {room_name} has been turned on."
 
 @tool
 def turn_off_room_light(room_id: str) -> str:
     """Turn off the light in a specific room."""
     container.lightning_service.turn_off_room_light(room_id)
-    return f"Light in room {room_id} has been turned off."
+    room_name = container.house.get_room_by_id(room_id).name
+    return f"Light in room {room_name} has been turned off."
 
 @tool 
 def turn_off_lights_in_rooms(room_ids: list[str]) -> str:
