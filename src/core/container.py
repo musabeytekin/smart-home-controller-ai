@@ -1,9 +1,9 @@
 from chat_model import get_chat_model
-from smart_home_controller.src.services.default_lightning_service import DefaultLightningService
+from core.lightning_service import LightningService
+from services.default_lightning_service import DefaultLightningService
 from .models.house import House
 from .house_data_provider import get_house
 from langchain_core.language_models import BaseChatModel
-from smart_home_controller.src.core.lightning_service import LightningService
 
 class Container:
 

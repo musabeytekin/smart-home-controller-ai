@@ -1,15 +1,12 @@
 from langchain_core.tools import tool
-
-
-@tool
-def adjust_temperature(temperature: float):
-    """Adjust the home's temperature to the specified value in Celsius."""
-    return f"Temperature adjusted to {temperature}°C."
+from core.container import container
+from core.models.house import House
 
 @tool
-def increase_temperature_by(amount: float):
-    """Increase the home's temperature by the specified amount in Celsius."""
-    return f"Temperature increased by {amount}°C."
+def get_house_sketch() -> str:
+    """Get a detailed text-based sketch of the entire house."""
+    house: House = container.house
+    return house.get_house_plan()
 
 
 
