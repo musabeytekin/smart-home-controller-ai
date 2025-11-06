@@ -5,8 +5,6 @@ from core.container import container
 
 
 class DefaultLightningService(LightningService):
-    def __init__(self, house: House):
-        self.house = house
 
     def turn_on_all_lights(self):
         self.house.turn_on_all_lights()

@@ -1,6 +1,11 @@
 from abc import ABC, abstractmethod
 
+from core.models.house import House
+
 class LightningService(ABC):
+
+    def __init__(self, house: House):
+        self.house = house
 
     @abstractmethod
     def turn_on_all_lights(self):
