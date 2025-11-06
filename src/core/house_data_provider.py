@@ -1,5 +1,5 @@
-from smart_home_controller.src.core.models.door import Door
-from smart_home_controller.src.core.models.room import Room
+from core.models.door import Door
+from core.models.room import Room
 from .models.house import House
 
 def __get_fresh_house() -> House:
