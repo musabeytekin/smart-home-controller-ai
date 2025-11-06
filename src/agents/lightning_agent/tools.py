@@ -5,28 +5,33 @@ from core.container import container
 @tool
 def turn_on_all_lights() -> str:
     """Turn on all lights in the house."""
-    return container.lightning_service.turn_on_all_lights()
+    container.lightning_service.turn_on_all_lights()
+    return "All lights have been turned on."
 
 
 @tool
 def turn_off_all_lights() -> str:
     """Turn off all lights in the house."""
-    return container.lightning_service.turn_off_all_lights()
+    container.lightning_service.turn_off_all_lights()
+    return "All lights have been turned off."
 
 @tool
 def turn_on_room_light(room_id: str) -> str:
     """Turn on the light in a specific room."""
-    return container.lightning_service.turn_on_room_light(room_id)  
+    container.lightning_service.turn_on_room_light(room_id)
+    return f"Light in room {room_id} has been turned on."
 
 @tool
 def turn_off_room_light(room_id: str) -> str:
     """Turn off the light in a specific room."""
-    return container.lightning_service.turn_off_room_light(room_id)
+    container.lightning_service.turn_off_room_light(room_id)
+    return f"Light in room {room_id} has been turned off."
 
 @tool 
 def turn_off_lights_in_rooms(room_ids: list[str]) -> str:
     """Turn off lights in multiple rooms."""
-    return container.lightning_service.turn_off_lights_in_rooms(room_ids)
+    container.lightning_service.turn_off_lights_in_rooms(room_ids)
+    return f"Lights in rooms {', '.join(container.house.get_room_by_id(room_id).name for room_id in room_ids)} have been turned off."
 
 @tool
 def get_house_sketch() -> str:

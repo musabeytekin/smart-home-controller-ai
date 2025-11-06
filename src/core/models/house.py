@@ -83,3 +83,9 @@ class House:
         plan.append("=" * 60)
         
         return "\n".join(plan)
+    
+    def get_room_by_id(self, room_id: str) -> Room:
+        for room in self.rooms:
+            if room.id == room_id:
+                return room
+        raise ValueError(f"Room with ID {room_id} not found.")
