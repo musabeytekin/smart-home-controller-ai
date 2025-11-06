@@ -1,14 +1,19 @@
 from abc import ABC, abstractmethod
 
+from core.models.house import House
+
 
 
 class ClimateService(ABC):
+    def __init__(self, house: House):
+        self.house = house
+
 
     @abstractmethod
     def set_temperature_all_rooms(self, temperature: float):
         """
         Set the temperature for all rooms in the house.
-        
+
         :raises ValueError: If the temperature is out of acceptable range.
         :raises ConnectionError: If there is an issue connecting to the climate control system.
         """

@@ -5,8 +5,7 @@ from core.container import container
 
 
 class DefaultClimateService(ClimateService):
-    def __init__(self, house: House):
-        self.house = house
+
 
     def set_temperature_all_rooms(self, temperature: float):
         for room in self.house.rooms:
