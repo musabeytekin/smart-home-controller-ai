@@ -1,7 +1,7 @@
-from smart_home_controller.src.core.models import room
-from smart_home_controller.src.core.models.house import House
-from smart_home_controller.src.core.lightning_service import LightningService
-from smart_home_controller.src.core.container import container
+from core.models import room
+from core.models.house import House
+from core.lightning_service import LightningService
+from core.container import container
 
 
 class DefaultLightningService(LightningService):
