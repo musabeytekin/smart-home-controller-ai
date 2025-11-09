@@ -41,45 +41,20 @@ class House:
     
     def get_house_plan(self) -> str:
         """
-        Returns a detailed text-based sketch of the entire house including:
-        - House name
-        - Entry door status
-        - All rooms with their properties
-        - Each room's doors
+        Returns a concise text-based representation of the house for LLM prompts.
+        Includes essential information: house name, entry door, rooms, and their properties.
         """
-        plan = []
-        plan.append("=" * 60)
-        plan.append(f"HOUSE: {self.name}")
-        plan.append("=" * 60)
+        plan = [f"House: {self.name}"]
         
-        plan.append("\n📍 ENTRY DOOR:")
-        plan.append(f"  • Name: {self.entry_door.name}")
-        plan.append(f"  • ID: {self.entry_door.id}")
-        plan.append(f"  • Status: {'❌ LOCKED' if self.entry_door.is_locked else '✅ UNLOCKED'}")
+        plan.append(f"Entry Door: {self.entry_door.name} (ID: {self.entry_door.id}, {'Locked' if self.entry_door.is_locked else 'Unlocked'})")
         
-        plan.append(f"\n🏠 ROOMS ({len(self.rooms)} total):")
-        plan.append("-" * 60)
-        
-        for idx, room in enumerate(self.rooms, 1):
-            plan.append(f"\n{idx}. ROOM: {room.name}")
-            plan.append(f"   ├─ ID: {room.id}")
-            plan.append(f"   ├─ Temperature: {room.temperature}°C")
-            plan.append(f"   ├─ Lights: {'💡 ON' if room.light_status else '⚫ OFF'}")
+        plan.append(f"Rooms ({len(self.rooms)}):")
+        for room in self.rooms:
+            plan.append(f"  - {room.name} (ID: {room.id}, Temp: {room.temperature}°C, Lights: {'On' if room.light_status else 'Off'})")
             
             if room.doors:
-                plan.append(f"   └─ Doors ({len(room.doors)}):")
-                for door_idx, door in enumerate(room.doors, 1):
-                    is_last_door = door_idx == len(room.doors)
-                    connector = "└─" if is_last_door else "├─"
-                    plan.append(f"      {connector} Door {door_idx}: {door.name}")
-                    plan.append(f"         • ID: {door.id}")
-                    plan.append(f"         • Status: {'❌ LOCKED' if door.is_locked else '✅ UNLOCKED'}")
-            else:
-                plan.append(f"   └─ Doors: None")
-        
-        plan.append("\n" + "=" * 60)
-        plan.append("END OF HOUSE PLAN")
-        plan.append("=" * 60)
+                for door in room.doors:
+                    plan.append(f"    - Door: {door.name} (ID: {door.id}, {'Locked' if door.is_locked else 'Unlocked'})")
         
         return "\n".join(plan)
     

@@ -9,10 +9,10 @@ from agents.lighting_agent.agent import lighting_agent
 def manage_climate_system(request: str) -> str:
     """
     Control the homes climate system using natural language.
-    Use this when the user wants to modify or check temperatures in rooms.
+    Use this when the user wants to modify or check temperatures in specific room/rooms or the entire house.
 
     Input: Natural language climate control request (e.g., 'set living room
-    temperature to 22 degrees', 'what is the temperature in the bedroom?', 'increase the kitchen temperature by 3 degrees')
+    temperature to 22 degrees', 'what is the temperature in the bedroom?', 'increase the kitchen temperature by 3 degrees', 'increase the temperature by 3 degrees for the entire house')
     """
 
     result = climate_agent.invoke({
@@ -33,7 +33,7 @@ def manage_security(request: str) -> str:
     Control the homes security system using natural language.
     Use this when the user wants to lock/unlock doors.
 
-    Input: Natural language security control request (e.g., 'is the front door locked?')
+    Input: Natural language security control request (e.g., 'is the front door locked?', 'lock the back door', 'lock all doors')
     """
 
     result = security_agent.invoke({
@@ -45,9 +45,9 @@ def manage_security(request: str) -> str:
 def manage_lighting(request: str) -> str:
     """
     Control the homes lighting system using natural language.
-    Use this when the user wants to modify lighting in rooms.
+    Use this when the user wants to modify lighting.
 
-    Input: Natural language lighting control request (e.g., 'turn on the living room lights', 'increase the temperature by 3 degrees', 'what is the status of the kitchen lights?', 'dim the bedroom lights to 50%')
+    Input: Natural language lighting control request (e.g., 'turn on the living room lights', 'turn on all lights', 'what is the status of the kitchen lights?')
     """
 
     result = lighting_agent.invoke({
