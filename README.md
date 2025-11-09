@@ -11,7 +11,7 @@ A demonstration of the **Supervisor Pattern** in multi-agent AI systems using La
 This demo implements a **hierarchical multi-agent architecture** where a supervisor agent routes user requests to specialized sub-agents:
 - **Climate Agent**: Temperature control
 - **Security Agent**: Door lock management  
-- **Lightning Agent**: Lighting control
+- **Lighting Agent**: Lighting control
 
 The supervisor analyzes natural language commands, determines which agent(s) to invoke, and coordinates their responses.
 
@@ -44,7 +44,7 @@ Monitor and manage all rooms at a glance. The Rooms tab displays real-time statu
           │                  │                  │
           ▼                  ▼                  ▼
     ┌──────────┐      ┌──────────┐      ┌──────────┐
-    │ Climate  │      │ Security │      │Lightning │
+    │ Climate  │      │ Security │      │ Lighting │
     │  Agent   │      │  Agent   │      │  Agent   │
     └──────────┘      └──────────┘      └──────────┘
 ```
@@ -148,7 +148,7 @@ The supervisor agent will:
 
 ### Supervisor Agent
 - **Role**: Request orchestrator
-- **Tools**: Routes to Climate, Security, and Lightning agents
+- **Tools**: Routes to Climate, Security, and Lighting agents
 - **Capabilities**: Multi-agent coordination, complex task decomposition
 
 ### Climate Agent
@@ -159,7 +159,7 @@ The supervisor agent will:
 - **Domain**: Access control
 - **Tools**: Lock/unlock doors (entry, specific doors, all doors)
 
-### Lightning Agent
+### Lighting Agent
 - **Domain**: Lighting control
 - **Tools**: Turn on/off lights (all, specific rooms)
 
