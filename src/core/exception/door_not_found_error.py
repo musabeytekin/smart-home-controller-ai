@@ -1,0 +1,2 @@
+class DoorNotFoundError(Exception):
+    pass
