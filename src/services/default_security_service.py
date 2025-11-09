@@ -82,7 +82,7 @@ class DefaultSecurityService(SecurityService):
 
         return unlocked_doors
 
-    def lock_all_doors(self) -> list[Door]:
+    def lock_all_doors(self):
         try:
             locked_doors = []
 
@@ -94,7 +94,7 @@ class DefaultSecurityService(SecurityService):
         except Exception as e:
             raise SecurityError(f"Failed to lock all doors: {str(e)}")
 
-    def unlock_all_doors(self) -> list[Door]:
+    def unlock_all_doors(self):
 
         try:
             unlocked_doors = []

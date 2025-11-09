@@ -78,22 +78,20 @@ class SecurityService(ABC):
         pass
 
     @abstractmethod
-    def lock_all_doors(self) -> list[Door]:
+    def lock_all_doors(self):
         """
         Lock all doors in the house.
 
         :raises SecurityError: If there is an issue with the security system.
-        :return: A list of all locked Door details.
         """
         pass
 
     @abstractmethod
-    def unlock_all_doors(self) -> list[Door]:
+    def unlock_all_doors(self):
         """
         Unlock all doors in the house.
 
         :raises SecurityError: If there is an issue with the security system.
-        :return: A list of all unlocked Door details.
         """
         pass
 
