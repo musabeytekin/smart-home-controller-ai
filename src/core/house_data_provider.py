@@ -1,6 +1,6 @@
 from core.models.door import Door
 from core.models.room import Room
-from .models.house import House
+from core.models.house import House
 
 def __get_fresh_house() -> House:
     """Create and return a fresh House instance with default data."""

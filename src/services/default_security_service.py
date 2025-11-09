@@ -155,3 +155,16 @@ class DefaultSecurityService(SecurityService):
             unlocked_doors.extend(doors)
 
         return unlocked_doors
+    
+    def is_door_locked(self, door_id: str) -> bool:
+        try:
+            door = self.house.get_door_by_id(door_id)
+            if door:
+                return door.is_locked
+            else:
+                raise DoorNotFoundError(
+                    f"Door with ID '{door_id}' not found in the house.")
+        except DoorNotFoundError:
+            raise
+        except Exception as e:
+            raise SecurityError(f"Failed to check lock status of door '{door_id}': {str(e)}")

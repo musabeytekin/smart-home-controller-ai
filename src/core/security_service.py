@@ -138,3 +138,14 @@ class SecurityService(ABC):
         :return: A list of unlocked Door details in the specified rooms.
         """
         pass
+
+    @abstractmethod
+    def is_door_locked(self, door_id: str) -> bool:
+        """
+        Check if a specific door is locked.
+
+        :param door_id: The ID of the door to check.
+        :raises DoorNotFoundError: If the specified door is not found.
+        :return: True if the door is locked, False otherwise.
+        """
+        pass

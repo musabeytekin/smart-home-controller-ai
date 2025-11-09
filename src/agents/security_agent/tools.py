@@ -103,6 +103,12 @@ def unlock_rooms_doors(room_ids: list[str]) -> str:
     door_names = ', '.join([door.name for door in doors_unlocked])
     return f"All doors in rooms '{', '.join(room_ids)}' have been unlocked: {door_names}."
 
+@tool
+def is_door_locked(door_id: str) -> bool:
+    """Check if a specific door is locked."""
+    security_service = container.security_service
+    return security_service.is_door_locked(door_id)
+
 
 
 SECURITY_TOOLKIT = [
@@ -119,4 +125,5 @@ SECURITY_TOOLKIT = [
     unlock_room_doors,
     lock_rooms_doors,
     unlock_rooms_doors,
+    is_door_locked,
 ]
