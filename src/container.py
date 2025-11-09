@@ -1,3 +1,5 @@
+from core.security_service import SecurityService
+from services.default_security_service import DefaultSecurityService
 from .core.chat_model import get_chat_model
 from core.climate_service import ClimateService
 from core.lightning_service import LightningService
@@ -14,6 +16,7 @@ class Container:
         self.chat_model: BaseChatModel = get_chat_model()
         self.lightning_service: LightningService = DefaultLightningService(house=self.house)
         self.climate_service: ClimateService = DefaultClimateService(house=self.house)
+        self.security_service: SecurityService = DefaultSecurityService(house=self.house)
 
 
 container = Container()
