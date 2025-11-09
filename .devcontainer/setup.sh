@@ -14,33 +14,53 @@ function handle_error {
 
 echo "${GREEN}Starting setup...${RESET}"
 
-[ -z "$GIT_USER" ] && handle_error "GIT_USER is not set"
-[ -z "$GIT_EMAIL" ] && handle_error "GIT_EMAIL is not set"
-[ -z "$GIT_TOKEN" ] && handle_error "GIT_TOKEN is not set"
-[ -z "$GIT_REMOTE" ] && handle_error "GIT_REMOTE is not set"
-
-git config --global user.name "$GIT_USER" || handle_error "Failed to set Git user.name"
-git config --global user.email "$GIT_EMAIL" || handle_error "Failed to set Git user.email"
-git config --global credential.helper store || handle_error "Failed to set Git credential helper"
-git config --global pull.rebase false
-
-CREDENTIALS_FILE="$HOME/.git-credentials"
-echo "https://$GIT_USER:$GIT_TOKEN@github.com" > "$CREDENTIALS_FILE" || handle_error "Failed to store Git credentials"
-chmod 600 "$CREDENTIALS_FILE" || handle_error "Failed to set permissions on credentials file"
-
-REMOTE_WITH_TOKEN=$(echo "$GIT_REMOTE" | sed -E "s#https://#https://$GIT_USER:$GIT_TOKEN@#")
-
-if git remote get-url origin >/dev/null 2>&1; then
-    echo "${YELLOW}Remote 'origin' already exists, updating URL...${RESET}"
-    git remote set-url origin "$REMOTE_WITH_TOKEN" || handle_error "Failed to update Git remote origin"
-else
-    git remote add origin "$REMOTE_WITH_TOKEN" || handle_error "Failed to add Git remote origin"
+# Check for OpenAI API key (optional but recommended)
+if [ -z "$OPENAI_API_KEY" ]; then
+  echo "${YELLOW}WARNING: OPENAI_API_KEY is not set!${RESET}"
+  echo "${YELLOW}You will need to configure an LLM provider API key to use this application.${RESET}"
+  echo "${YELLOW}See: https://docs.langchain.com/oss/python/integrations/providers/all_providers${RESET}"
+  echo ""
 fi
 
-echo "Git configuration:"
-echo "  user.name:  $(git config --global user.name)"
-echo "  user.email: $(git config --global user.email)"
-echo "  origin:     $(git remote get-url origin)"
+# Configure Git if credentials are provided (optional)
+if [ -n "$GIT_USER" ] && [ -n "$GIT_EMAIL" ]; then
+  echo "${GREEN}Configuring Git...${RESET}"
+  
+  git config --global user.name "$GIT_USER" || handle_error "Failed to set Git user.name"
+  git config --global user.email "$GIT_EMAIL" || handle_error "Failed to set Git user.email"
+  git config --global credential.helper store || handle_error "Failed to set Git credential helper"
+  git config --global pull.rebase false
+  
+  if [ -n "$GIT_TOKEN" ]; then
+    CREDENTIALS_FILE="$HOME/.git-credentials"
+    echo "https://$GIT_USER:$GIT_TOKEN@github.com" > "$CREDENTIALS_FILE" || handle_error "Failed to store Git credentials"
+    chmod 600 "$CREDENTIALS_FILE" || handle_error "Failed to set permissions on credentials file"
+  fi
+  
+  if [ -n "$GIT_REMOTE" ]; then
+    if [ -n "$GIT_TOKEN" ]; then
+      REMOTE_WITH_TOKEN=$(echo "$GIT_REMOTE" | sed -E "s#https://#https://$GIT_USER:$GIT_TOKEN@#")
+    else
+      REMOTE_WITH_TOKEN="$GIT_REMOTE"
+    fi
+    
+    if git remote get-url origin >/dev/null 2>&1; then
+        echo "${YELLOW}Remote 'origin' already exists, updating URL...${RESET}"
+        git remote set-url origin "$REMOTE_WITH_TOKEN" || handle_error "Failed to update Git remote origin"
+    else
+        git remote add origin "$REMOTE_WITH_TOKEN" || handle_error "Failed to add Git remote origin"
+    fi
+  fi
+  
+  echo "Git configuration:"
+  echo "  user.name:  $(git config --global user.name)"
+  echo "  user.email: $(git config --global user.email)"
+  if [ -n "$GIT_REMOTE" ]; then
+    echo "  origin:     $(git remote get-url origin)"
+  fi
+else
+  echo "${YELLOW}Git credentials not provided, skipping Git configuration...${RESET}"
+fi
 
 if [ -f requirements.txt ]; then
   echo "Installing Python dependencies from requirements.txt..."
