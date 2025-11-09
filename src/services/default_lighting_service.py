@@ -1,9 +1,9 @@
 from core.models import room
 from core.models.house import House
-from core.lightning_service import LightningService
+from core.lighting_service import LightingService
 
 
-class DefaultLightningService(LightningService):
+class DefaultLightingService(LightingService):
 
     def turn_on_all_lights(self):
         self.house.turn_on_all_lights()

@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from core.models.house import House
 
-class LightningService(ABC):
+class LightingService(ABC):
 
     def __init__(self, house: House):
         self.house = house

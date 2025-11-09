@@ -2,7 +2,7 @@ from container import container
 from langchain.tools import tool
 from agents.climate_agent.agent import climate_agent
 from agents.security_agent.agent import security_agent
-from agents.lightning_agent.agent import lightning_agent
+from agents.lighting_agent.agent import lighting_agent
 
 
 @tool
@@ -42,7 +42,7 @@ def manage_security(request: str) -> str:
     return result["messages"][-1].text
 
 @tool
-def manage_lightning(request: str) -> str:
+def manage_lighting(request: str) -> str:
     """
     Control the homes lighting system using natural language.
     Use this when the user wants to modify lighting in rooms.
@@ -50,7 +50,7 @@ def manage_lightning(request: str) -> str:
     Input: Natural language lighting control request (e.g., 'turn on the living room lights', 'increase the temperature by 3 degrees', 'what is the status of the kitchen lights?', 'dim the bedroom lights to 50%')
     """
 
-    result = lightning_agent.invoke({
+    result = lighting_agent.invoke({
         "messages": [{"role": "user", "content": request}]
     })
     return result["messages"][-1].text
@@ -60,7 +60,7 @@ SUPERVISOR_TOOLKIT = [
     manage_climate_system,
     get_house_plan,
     manage_security,
-    manage_lightning,
+    manage_lighting,
 ]
 
     

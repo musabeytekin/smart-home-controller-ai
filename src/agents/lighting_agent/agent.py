@@ -1,9 +1,9 @@
 from container import container
-from .tools import LIGHTNING_TOOLKIT
+from .tools import LIGHTING_TOOLKIT
 from langchain.agents import create_agent
 
 
-__LIGHTNING_AGENT_PROMPT = (
+__LIGHTING_AGENT_PROMPT = (
     "You are a smart home lighting assistant. "
     "Control the lighting in the house based on user requests. "
     "House plan details:"
@@ -14,9 +14,9 @@ __LIGHTNING_AGENT_PROMPT = (
     "Always confirm the actions taken in your final response."
 )
 
-lightning_agent = create_agent(
+lighting_agent = create_agent(
     model=container.chat_model,
-    tools=LIGHTNING_TOOLKIT,
-    system_prompt=__LIGHTNING_AGENT_PROMPT,
+    tools=LIGHTING_TOOLKIT,
+    system_prompt=__LIGHTING_AGENT_PROMPT,
 )
 
