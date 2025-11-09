@@ -89,3 +89,27 @@ class House:
             if room.id == room_id:
                 return room
         raise ValueError(f"Room with ID {room_id} not found.")
+    
+    def get_door_by_id(self, door_id: str) -> Door:
+        if self.entry_door.id == door_id:
+            return self.entry_door
+        
+        for room in self.rooms:
+            for door in room.doors:
+                if door.id == door_id:
+                    return door
+        
+        raise ValueError(f"Door with ID {door_id} not found.")
+    
+    def get_all_doors(self) -> list[Door]:
+        seen_ids = {self.entry_door.id}
+        doors = [self.entry_door]
+        
+        for room in self.rooms:
+            for door in room.doors:
+                if door.id not in seen_ids:
+                    doors.append(door)
+                    seen_ids.add(door.id)
+        
+        return doors
+
