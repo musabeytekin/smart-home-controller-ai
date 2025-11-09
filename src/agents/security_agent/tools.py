@@ -1,5 +1,5 @@
 from langchain_core.tools import tool
-from core.container import container
+from container import container
 from core.models.house import House
 
 @tool

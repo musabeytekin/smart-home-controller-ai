@@ -1,7 +1,6 @@
 from core.models import room
 from core.models.house import House
 from core.lightning_service import LightningService
-from core.container import container
 
 
 class DefaultLightningService(LightningService):

@@ -1,7 +1,6 @@
 from core.models import room
 from core.models.house import House
 from core.climate_service import ClimateService
-from core.container import container
 
 
 class DefaultClimateService(ClimateService):

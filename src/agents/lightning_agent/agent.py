@@ -1,4 +1,4 @@
-from core.container import container
+from container import container
 from .tools import LIGHTNING_TOOLKIT
 from langchain.agents import create_agent
 

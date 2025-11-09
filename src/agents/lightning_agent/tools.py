@@ -1,6 +1,6 @@
 from langchain_core.tools import tool
 from core.models.house import House
-from core.container import container
+from container import container
 
 @tool
 def turn_on_all_lights() -> str:

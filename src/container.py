@@ -1,10 +1,10 @@
-from chat_model import get_chat_model
+from .core.chat_model import get_chat_model
 from core.climate_service import ClimateService
 from core.lightning_service import LightningService
 from services.default_climate_service import DefaultClimateService
 from services.default_lightning_service import DefaultLightningService
-from .models.house import House
-from .house_data_provider import get_house
+from .core.models.house import House
+from .core.house_data_provider import get_house
 from langchain_core.language_models import BaseChatModel
 
 class Container:
