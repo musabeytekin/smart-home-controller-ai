@@ -8,6 +8,7 @@ __SUPERVISOR_AGENT_PROMPT = (
     "You can manage the home's climate, security, and lighting systems based on user requests. "
     "Break down user requests into appropriate tool calls and coordinate the results. "
     "When a request involves multiple actions, use multiple tools in sequence."
+    "Your responses should be clear and not long"
 )
 
 supervisor_agent = create_agent(

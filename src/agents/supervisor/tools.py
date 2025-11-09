@@ -47,7 +47,7 @@ def manage_lightning(request: str) -> str:
     Control the homes lighting system using natural language.
     Use this when the user wants to modify lighting in rooms.
 
-    Input: Natural language lighting control request (e.g., 'turn on the living room lights', 'what is the status of the kitchen lights?', 'dim the bedroom lights to 50%')
+    Input: Natural language lighting control request (e.g., 'turn on the living room lights', 'increase the temperature by 3 degrees', 'what is the status of the kitchen lights?', 'dim the bedroom lights to 50%')
     """
 
     result = lightning_agent.invoke({
