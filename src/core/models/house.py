@@ -55,8 +55,7 @@ class House:
         plan.append("\n📍 ENTRY DOOR:")
         plan.append(f"  • Name: {self.entry_door.name}")
         plan.append(f"  • ID: {self.entry_door.id}")
-        plan.append(f"  • Status: {'🔒 LOCKED' if self.entry_door.is_locked else '🔓 UNLOCKED'}")
-        plan.append(f"  • Lights: {'💡 ON' if self.entry_door.lights_on else '⚫ OFF'}")
+        plan.append(f"  • Status: {'❌ LOCKED' if self.entry_door.is_locked else '✅ UNLOCKED'}")
         
         plan.append(f"\n🏠 ROOMS ({len(self.rooms)} total):")
         plan.append("-" * 60)
@@ -74,8 +73,7 @@ class House:
                     connector = "└─" if is_last_door else "├─"
                     plan.append(f"      {connector} Door {door_idx}: {door.name}")
                     plan.append(f"         • ID: {door.id}")
-                    plan.append(f"         • Status: {'🔒 LOCKED' if door.is_locked else '🔓 UNLOCKED'}")
-                    plan.append(f"         • Lights: {'💡 ON' if door.lights_on else '⚫ OFF'}")
+                    plan.append(f"         • Status: {'❌ LOCKED' if door.is_locked else '✅ UNLOCKED'}")
             else:
                 plan.append(f"   └─ Doors: None")
         
