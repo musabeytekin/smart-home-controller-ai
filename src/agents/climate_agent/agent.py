@@ -6,10 +6,7 @@ from langchain.agents import create_agent
 __CLIMATE_AGENT_PROMPT = (
     "You are a smart home climate control assistant. "
     "Manage the temperature settings in the house based on user requests. "
-    "House plan details:"
-    "\n ------- \n"
-    f"{container.house.get_house_plan()}"
-    "\n ------- \n"
+    "Always get the house sketch using the get_house_sketch tool before performing any actions. "
     "Use the available tools to set, increase, or decrease temperatures in specific rooms or throughout the house. "
     "Always confirm the actions taken in your final response."
 )
