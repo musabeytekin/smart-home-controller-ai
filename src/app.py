@@ -1,6 +1,9 @@
 import streamlit as st
 from agents.supervisor.agent import supervisor_agent
 from container import container
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Page configuration
 st.set_page_config(
